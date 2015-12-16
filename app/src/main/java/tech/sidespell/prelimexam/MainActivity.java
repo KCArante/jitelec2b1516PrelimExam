@@ -120,10 +120,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
                 if(increment) {
                     numberStart += 1;
                     mTvCount.setText(numberStart + "");
+                    handler.postDelayed(this, progressSeekBar);
                 }
                 else {
                     numberStart -= 1;
                     mTvCount.setText(numberStart + "");
+                    handler.postDelayed(this, progressSeekBar);
                 }
             }
         };
