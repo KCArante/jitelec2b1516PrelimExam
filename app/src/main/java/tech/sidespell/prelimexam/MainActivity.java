@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,22 +42,33 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         rbtnInc = (RadioButton) findViewById(R.id.radioButton);
         rbtnDec = (RadioButton) findViewById(R.id.radioButton2);
 
-        int id = rbtnGroup.getCheckedRadioButtonId();
-        if(id == R.id.radioButton){
-            increment = true;
-        }
-        else {
-            increment = false;
-        }
+        mToggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mToggleButton.isChecked()){
 
-        if(mToggleButton.isChecked()){
-            mToggleButton.setTextOn(getString(R.string.text_start));
-            progressSeekBar = mSeekBar.getProgress();
-            updateTextVIew(progressSeekBar);
-        }
-        else{
-            mToggleButton.setTextOff(getString(R.string.text_stop));
-        }
+                    mToggleButton.setTextOn(getString(R.string.text_start));
+                    int id = rbtnGroup.getCheckedRadioButtonId();
+                    if(id == R.id.radioButton){
+                        increment = true;
+                    }
+                    else {
+                        increment = false;
+                    }
+
+                    progressSeekBar = mSeekBar.getProgress();
+                    updateTextVIew(progressSeekBar);
+
+                }
+                else{
+
+                    mToggleButton.setTextOff(getString(R.string.text_stop));
+                }
+            }
+            });
+
+
+
         mSeekBar.setOnSeekBarChangeListener(this);
     }
 
